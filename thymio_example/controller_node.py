@@ -14,13 +14,18 @@ class ControllerNode(Node):
         # Create attributes to store odometry pose and velocity
         self.odom_pose = None
         self.odom_velocity = None
-        
+                
         # Create a publisher for the topic 'cmd_vel'
         self.vel_publisher = self.create_publisher(Twist, 'cmd_vel', 10)
 
         # Create a subscriber to the topic 'odom', which will call 
         # self.odom_callback every time a message is received
         self.odom_subscriber = self.create_subscription(Odometry, 'odom', self.odom_callback, 10)
+        
+        # NOTE: we're using relative names to specify the topics (i.e., without a 
+        # leading /). ROS resolves relative names by concatenating them with the 
+        # namespace in which this node has been started, thus allowing us to 
+        # specify which Thymio should be controlled.
         
     def start(self):
         # Create and immediately start a timer that will regularly publish commands

@@ -8,7 +8,9 @@ def generate_launch_description():
     ROS 2 launch files are special Python files that contain a function named
     generate_launch_description. This function must return a LaunchDescription
     object that represents the sets of actions that ROS should execute to start
-    the system
+    the system.
+    
+    NOTE: setup.py must also be updated to start using launch files
     """
     
     return LaunchDescription([
